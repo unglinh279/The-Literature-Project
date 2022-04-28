@@ -12,6 +12,8 @@ const firebaseConfig = {
 };
 
 const DEBUGREF = 'doc-hieu/ki-nang';
+const DEBUGIMG = 'img.jpg';
+const DEBUGPDF = 'pdf.pdf'
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
@@ -31,7 +33,7 @@ var randomBtn = document.getElementById("randomBtn");
 randomBtn.onclick = function(){
     console.log('wtf did i say?')
     var id = Math.floor(Math.random() * 100);
-    addBlog(DEBUGREF, 'Bài viết '.concat(id), 'img.jpg', 'pdf');
+    addBlog(DEBUGREF, 'Bài viết '.concat(id), DEBUGIMG, DEBUGPDF);
 }
 
 // READ
@@ -52,25 +54,23 @@ onSnapshot(Query, (querySnapshot) => {
         let div = document.createElement("div");
         div.id = titleID;
         div.setAttribute("class", "column");
-        div.innerHTML = card(titleDisplay, "Lorem Ispum", imgDisplay);
+        div.innerHTML = card(titleDisplay, pdfDisplay, imgDisplay);
         list.appendChild(div);
     });
 });
 
-function card(title, content, img) {
+function card(title, pdf, img) {
     return `
     <div class="card">
       <header class="card-header">
         <h1 class="card-header-title" id="data-title">${title}</h1>
         <center><img id="data-url" src="${img}"></center>
       </header>
-      <div class="card-content">
-        <span id="data-content">${content}</span>
+      <div>
+        <object data="${pdf}" type="application/pdf" width="100%" height="700">
+            alt : <a href="${pdf}">${pdf}</a>
+        </object>
       </div>
-      <footer class="card-footer">
-        <a class="card-footer-item" href="#preview" id="edit">Edit</a>
-        <a class="card-footer-item" style="color:red" id="delete">Delete</a>
-      </footer>
     </div>
     <br>
     `;
