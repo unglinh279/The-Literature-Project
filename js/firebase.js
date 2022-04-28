@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
 import { getFirestore, doc, addDoc, collection, getDocs, query, onSnapshot, orderBy} from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
+import { getStorage, ref} from "https://www.gstatic.com/firebasejs/9.6.11/firebase-storage.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAd92HXUcQiPZfMm36oBTnEi3konB93xHk",
@@ -12,8 +13,8 @@ const firebaseConfig = {
 };
 
 const DEBUGREF = 'doc-hieu/ki-nang';
-const DEBUGIMG = 'img.jpg';
-const DEBUGPDF = 'pdf.pdf'
+const DEBUGIMG = 'https://firebasestorage.googleapis.com/v0/b/the-bois--literature-project.appspot.com/o/img%2Fimg.jpg?alt=media&token=18e1cec3-e59f-4789-84c3-4dce091b3894';
+const DEBUGPDF = 'https://firebasestorage.googleapis.com/v0/b/the-bois--literature-project.appspot.com/o/pdf%2Fpdf.pdf?alt=media&token=9652539d-b3f4-401e-a47d-80e1e805be23'
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
