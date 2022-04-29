@@ -60,19 +60,23 @@ onSnapshot(Query, (querySnapshot) => {
     });
 });
 
+list.addEventListener("click", e =>{
+    let listNode = e.target.parentNode.parentNode;
+    let pdf = listNode.querySelector('#pdf-link').innerText;
+
+    localStorage.setItem('pdf', pdf);
+    window.location.pathname = 'pdfview.html';
+});
+
 function card(title, pdf, img) {
     return `
     <div class="card">
       <header class="card-header">
         <h1 class="card-header-title" id="data-title">${title}</h1>
-        <center><img id="data-url" src="${img}"></center>
+        <center><img id="data-img" src="${img}"></center>
       </header>
-      <div>
-        <object data="${pdf}" type="application/pdf" width="100%" height="700">
-            alt : <a href="${pdf}">${pdf}</a>
-        </object>
+      <h1 style="font-size: 0px; margin: 0px;" id="pdf-link">${pdf}</h1>
       </div>
-    </div>
     <br>
     `;
   }

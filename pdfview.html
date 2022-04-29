@@ -11,25 +11,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
     </style>
     <title>Readly</title>
-    <script src="https://unpkg.com/convertapi-js/lib/convertapi.js"></script>
+    <script src="js/pdfview.js"></script>
   </head>
   <body>
-    <div class="container">
-        <button id = "randomBtn" style="color:red">DO NOT CLICK</button>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="column">
-                    <center>
-                        <h1 style="color:brown">All The Posts</h1>
-                    </center>
-                    <div id="all-posts">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="js/firebase.js"></script>
+    <object id="frame" data="" type="application/pdf" style="min-height:99vh;width:100%"></object>
   </body>
 </html>
