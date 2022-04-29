@@ -65,7 +65,7 @@ list.addEventListener("click", e =>{
     let pdf = listNode.querySelector('#pdf-link').innerText;
 
     localStorage.setItem('pdf', pdf);
-    window.location.pathname = 'pdfview.html';
+    window.location.href = 'pdfview.html';
 });
 
 function card(title, pdf, img) {
