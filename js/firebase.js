@@ -67,12 +67,7 @@ list.addEventListener("click", e =>{
     localStorage.setItem('pdf', pdf);
 
     // dume github luôn
-    if(window.location.href[7] == 'u'){
-        window.location.href = 'pdfview.html';
-    }
-    else{
-        window.location.href = 'The-Literature-Project/pdfview.html';
-    } 
+    window.location.href = 'pdfview.html';
 });
 
 function card(title, pdf, img) {
