@@ -71,7 +71,7 @@ list.addEventListener("click", e =>{
         window.location.href = 'pdfview.html';
     }
     else{
-        window.location.href = 'pdfview.html';
+        window.location.href = 'The-Literature-Project/pdfview.html';
     } 
 });
 
