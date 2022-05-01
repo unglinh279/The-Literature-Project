@@ -1,14 +1,12 @@
-
-const urlParams = new URLSearchParams(window.location.search);
 let blogId = urlParams.get('id');
 
-let docRef = db.collection(DEBUGREF.concat("blogs")).doc(blogId);
+let docRef = db.collection("blogs").doc(blogId);
 
 docRef.get().then((doc) => {
     if(doc.exists){
         setupBlog(doc.data());
     } else{
-        location.replace("/");
+        location.replace("index.html");
     }
 })
 
@@ -16,11 +14,13 @@ const setupBlog = (data) => {
     const banner = document.getElementById('banner');
     const blogTitle = document.querySelector('.title');
     const titleTag = document.querySelector('title');
+    const tag = document.querySelector('.tag');
     const publish = document.querySelector('.published');
     
     banner.src = data.bannerImage;
     titleTag.innerHTML += blogTitle.innerHTML = data.title;
     publish.innerHTML += data.publishedAt;
+    tag.innerHTML += data.tag;
 
     const article = document.querySelector('.article');
     addArticle(article, data.article);

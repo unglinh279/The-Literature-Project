@@ -1,15 +1,30 @@
-const DEBUGREF = "doc-hieu/ki-nang/";
+
+const urlParams = new URLSearchParams(window.location.search);
+let tag = urlParams.get('tag');
 
 const blogSection = document.querySelector('.blogs-section');
 
-db.collection(DEBUGREF.concat("blogs")).get().then((blogs) => {
-    blogs.forEach(blog => {
-        const urlParams = new URLSearchParams(window.location.search);
-        if(blog.id != urlParams.get('id')){
-            createBlog(blog);
-        }
+if(tag != ''){
+    db.collection("blogs").where("tag", "==", tag).get().then((blogs) => {
+        blogs.forEach(blog => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if(blog.id != urlParams.get('id')){
+                createBlog(blog);
+            }
+        })
+    })    
+}
+else{
+    db.collection("blogs").get().then((blogs) => {
+        blogs.forEach(blog => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if(blog.id != urlParams.get('id')){
+                createBlog(blog);
+            }
+        })
     })
-})
+    
+}
 
 const createBlog = (blog) => {
     let data = blog.data();

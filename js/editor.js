@@ -1,8 +1,6 @@
-const DEBUGREF = "doc-hieu/ki-nang/";
-
 const blogTitleField = document.querySelector('.title');
 const articleFeild = document.querySelector('.article');
-
+const tagField = document.querySelector('.tag-select');
 const storageRef = firebase.storage().ref();
 
 // banner
@@ -64,9 +62,10 @@ publishBtn.addEventListener('click', () => {
         let date = new Date(); // for published at info
 
         //access firstore with db variable;
-        db.collection(DEBUGREF.concat("blogs")).doc(docName).set({
+        db.collection("blogs").doc(docName).set({
             title: blogTitleField.value,
             article: articleFeild.value,
+            tag: tagField.value,
             bannerImage: bannerPath,
             publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
         })
