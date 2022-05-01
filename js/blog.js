@@ -1,4 +1,6 @@
-let blogId = decodeURI(location.pathname.split("/").pop());
+
+const urlParams = new URLSearchParams(window.location.search);
+let blogId = urlParams.get('id');
 
 let docRef = db.collection(DEBUGREF.concat("blogs")).doc(blogId);
 
