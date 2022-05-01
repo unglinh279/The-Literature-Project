@@ -9,46 +9,49 @@ const banner = document.querySelector(".banner");
 let bannerPath;
 
 const publishBtn = document.querySelector('.publish-btn');
-const uploadInput = document.querySelector('#image-upload');
+//const uploadInput = document.querySelector('#image-upload');
 
 bannerImage.addEventListener('change', () => {
     uploadImage(bannerImage, "banner");
 })
 
-uploadInput.addEventListener('change', () => {
-    uploadImage(uploadInput, "image");
-})
+// uploadInput.addEventListener('change', () => {
+//     uploadImage(uploadInput, "image");
+// })
 
 const uploadImage = (uploadFile, uploadType) => {
     const [file] = uploadFile.files;
     if(file && file.type.includes("image")){
         storageRef.child('img/'.concat(file.name)).put(file).then((data) => {
             data.ref.getDownloadURL().then((url) => {
-                if(uploadType == "image"){
-                    addImage(url, file.name)
-                }
-                else{
-                    bannerPath = url;
-                    banner.style.backgroundImage = `url("${bannerPath}")`;
-                }
+                bannerPath = url;
+                banner.style.backgroundImage = `url("${bannerPath}")`;
             });
         });
 
-    } else{
-        alert("up ảnh thôi mày");
     }
 }
 
-const addImage = (imagepath, alt) => {
-    let curPos = articleFeild.selectionStart;
-    let textToInsert = `\r![${alt}](${imagepath})\r`;
-    articleFeild.value = articleFeild.value.slice(0, curPos) + textToInsert + articleFeild.value.slice(curPos);
-}
+// const addImage = (imagepath, alt) => {
+//     let curPos = articleFeild.selectionStart;
+//     let textToInsert = `\r![${alt}](${imagepath})\r`;
+//     articleFeild.value = articleFeild.value.slice(0, curPos) + textToInsert + articleFeild.value.slice(curPos);
+// }
 
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 publishBtn.addEventListener('click', () => {
-    if(articleFeild.value.length && blogTitleField.value.length){
+    console.log(tinymce.get("article").getContent());
+    if(!tinymce.get("article").getContent().length){
+        alert("viết gì ik rùi đăng");
+    }
+    else if(!blogTitleField.value.length){
+        alert("viết cái tiêu đề ik");
+    }
+    else if(bannerPath == null){
+        alert("up cái ảnh bìa ik");
+    }
+    else{
         // generating id
         let letters = 'abcdefghijklmnopqrstuvwxyz';
         let blogTitle = blogTitleField.value.split(" ").join("-");
@@ -64,7 +67,7 @@ publishBtn.addEventListener('click', () => {
         //access firstore with db variable;
         db.collection("blogs").doc(docName).set({
             title: blogTitleField.value,
-            article: articleFeild.value,
+            article: tinymce.get("article").getContent(),
             tag: tagField.value,
             bannerImage: bannerPath,
             publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`

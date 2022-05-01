@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readly : Editor</title>
+
+    <script src="https://cdn.tiny.cloud/1/z8ye5qf9kbet06iz5ci8nfpco96ye1n424wo8x75c395dojj/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -30,13 +32,22 @@
 
     <div class="blog">
         <textarea type="text" class="title" placeholder="Blog title..."></textarea>
-        <textarea type="text" class="article" placeholder="Start writing here..."></textarea>
+        <!-- <textarea type="text" class="article" placeholder="Start writing here..."></textarea> -->
+        <textarea id="article" class="article" placeholder="Start writing here..."></textarea>
+        <script>
+            tinymce.init({
+              selector: 'textarea#article',
+              plugins: 'a11ychecker casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste tableofcontents',
+              toolbar: 'casechange checklist export formatpainter image editimage pageembed permanentpen tableofcontents',
+              toolbar_mode: 'floating',
+            });
+          </script>
     </div>
 
     <div class="blog-options">
         <button class="btn dark publish-btn">publish</button>
-        <input type="file" accept="image/*" id="image-upload" hidden>
-        <label for="image-upload" class="btn grey upload-btn">Upload Image</label>
+        <!--<input type="file" accept="image/*" id="image-upload" hidden>
+        <label for="image-upload" class="btn grey upload-btn">Upload Image</label>-->
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
