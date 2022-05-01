@@ -40,7 +40,8 @@ function render() {
 
 input.addEventListener('keydown', function(event) {
     if(event.key == 'Enter') {
-        tags.push(input.value.trim())
+        if(input.value.trim() != '')
+            tags.push(input.value.trim())
         input.value = ''
         render()
     }
