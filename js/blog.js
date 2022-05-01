@@ -31,8 +31,20 @@ const addArticle = (ele, data) => {
     // console.log(data);
 
     data.forEach(item => {
+        // check for heading
+        if(item[0] == '#'){
+            let hCount = 0;
+            let i = 0;
+            while(item[i] == '#'){
+                hCount++;
+                i++;
+            }
+            let tag = `h${hCount}`;
+            ele.innerHTML += `<${tag}>${item.slice(hCount, item.length)}</${tag}>`
+        } 
+
         //checking for image format
-        if(item[0] == "!" && item[1] == "["){
+        else if(item[0] == "!" && item[1] == "["){
             let seperator;
 
             for(let i = 0; i <= item.length; i++){
