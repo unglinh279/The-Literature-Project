@@ -4,27 +4,14 @@ let tag = urlParams.get('tag');
 
 const blogSection = document.querySelector('.blogs-section');
 
-if(tag != null){
-    db.collection("blogs").where("tag", "==", tag).get().then((blogs) => {
-        blogs.forEach(blog => {
-            const urlParams = new URLSearchParams(window.location.search);
-            if(blog.id != urlParams.get('id')){
-                createBlog(blog);
-            }
-        })
-    })    
-}
-else{
-    db.collection("blogs").get().then((blogs) => {
-        blogs.forEach(blog => {
-            const urlParams = new URLSearchParams(window.location.search);
-            if(blog.id != urlParams.get('id')){
-                createBlog(blog);
-            }
-        })
+db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then((blogs) => {
+    blogs.forEach(blog => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if(blog.id != urlParams.get('id')){
+            createBlog(blog);
+        }
     })
-    
-}
+})    
 
 const createBlog = (blog) => {
     let data = blog.data();

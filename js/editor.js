@@ -6,20 +6,20 @@ const storageRef = firebase.storage().ref();
 // banner
 const bannerImage = document.querySelector('#banner-upload');
 const banner = document.querySelector(".banner");
-let bannerPath;
+let bannerPath = null;
 
 const publishBtn = document.querySelector('.publish-btn');
 //const uploadInput = document.querySelector('#image-upload');
 
 bannerImage.addEventListener('change', () => {
-    uploadImage(bannerImage, "banner");
+    uploadImage(bannerImage);
 })
 
 // uploadInput.addEventListener('change', () => {
 //     uploadImage(uploadInput, "image");
 // })
 
-const uploadImage = (uploadFile, uploadType) => {
+const uploadImage = (uploadFile) => {
     const [file] = uploadFile.files;
     if(file && file.type.includes("image")){
         storageRef.child('img/'.concat(file.name)).put(file).then((data) => {
@@ -28,7 +28,6 @@ const uploadImage = (uploadFile, uploadType) => {
                 banner.style.backgroundImage = `url("${bannerPath}")`;
             });
         });
-
     }
 }
 
@@ -41,42 +40,40 @@ const uploadImage = (uploadFile, uploadType) => {
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 publishBtn.addEventListener('click', () => {
-    console.log(tinymce.get("article").getContent());
     if(!tinymce.get("article").getContent().length){
         alert("viết gì ik rùi đăng");
     }
     else if(!blogTitleField.value.length){
         alert("viết cái tiêu đề ik");
     }
-    else if(bannerPath == null){
-        alert("up cái ảnh bìa ik");
-    }
     else{
-        // generating id
-        let letters = 'abcdefghijklmnopqrstuvwxyz';
-        let blogTitle = blogTitleField.value.split(" ").join("-");
-        let id = '';
-        for(let i = 0; i < 4; i++){
-            id += letters[Math.floor(Math.random() * letters.length)];
+        if(bannerPath == null){
+            storageRef.child('img/default.jpg').getDownloadURL().then((url) => {
+                bannerPath = url;
+                // generating id
+                let letters = 'abcdefghijklmnopqrstuvwxyz';
+                let blogTitle = blogTitleField.value.split(" ").join("-");
+                let id = '';
+                for(let i = 0; i < 4; i++){
+                    id += letters[Math.floor(Math.random() * letters.length)];
+                }
+
+                // setting up docName
+                let docName = `${blogTitle}-${id}`;
+                let date = new Date(); // for published at info
+
+                //access firstore with db variable;
+                db.collection("blogs").doc(docName).set({
+                    title: blogTitleField.value,
+                    article: tinymce.get("article").getContent(),
+                    tag: tagField.value,
+                    bannerImage: bannerPath,
+                    publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+                })
+                .then(() => {
+                    location.href = 'blog.html'+'?id='+docName;
+                });
+            });
         }
-
-        // setting up docName
-        let docName = `${blogTitle}-${id}`;
-        let date = new Date(); // for published at info
-
-        //access firstore with db variable;
-        db.collection("blogs").doc(docName).set({
-            title: blogTitleField.value,
-            article: tinymce.get("article").getContent(),
-            tag: tagField.value,
-            bannerImage: bannerPath,
-            publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-        })
-        .then(() => {
-            location.href = 'blog.html'+'?id='+docName;
-        })
-        .catch((err) => {
-            console.error(err);
-        })
     }
 })
