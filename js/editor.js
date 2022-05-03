@@ -63,7 +63,7 @@ function publish(){
     }); 
 }
 
-let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let months = ["tháng Một", "tháng Hai", "tháng Ba", "tháng Tư", "tháng Năm", "tháng Sáu", "tháng Bảy", "tháng Tám", "tháng Chín", "tháng Mười", "tháng Mười một", "tháng Mười hai"];
 
 publishBtn.addEventListener('click', () => {
     if(!tinymce.get("article").getContent().length){
