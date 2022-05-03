@@ -171,3 +171,8 @@ body {
     margin: auto;
     border-radius: 2px 2px;
 }
+
+.is-hidden { 
+    display: none; 
+}
+
