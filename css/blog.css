@@ -1,0 +1,23 @@
+* {
+    font-family: segoe ui,lucida grande,Arial,sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.blog {
+    box-sizing: border-box;
+    padding: 0px 15%;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: justify;
+}
+
+.blog .published {
+    text-align: right;
+}
+
+.blog strong {
+    font-size: 22px;
+}
