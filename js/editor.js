@@ -65,10 +65,10 @@ function publish(){
 
 publishBtn.addEventListener('click', () => {
     if(!tinymce.get("article").getContent().length){
-        alert("viết gì ik rùi đăng");
+        alert("viết gì ik rùi đăng!");
     }
     else if(!blogTitleField.value.length){
-        alert("viết cái tiêu đề ik");
+        alert("viết cái tiêu đề ik chời!");
     }
     else{
         if(bannerPath == null){

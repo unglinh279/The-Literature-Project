@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readly : Editor</title>
-
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.css">
     <script src="https://cdn.tiny.cloud/1/z8ye5qf9kbet06iz5ci8nfpco96ye1n424wo8x75c395dojj/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
@@ -16,23 +17,52 @@
         </ul>
     </nav>
 
+    <!-- <div class="banner">
+        <input type="file" accept="image/*" id="banner-upload">
+        <p></p>
+        <label for="banner-upload" class="banner-upload-btn">
+            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        </label>
+    </div> -->
     <div class="banner">
-        <input type="file" accept="image/*" id="banner-upload" hidden>
-        <label for="banner-upload" class="banner-upload-btn"><img src="img/upload.png" alt="upload banner"></label>
+        <div class="wrapper">
+           <div class="image">
+              <img src="img/none.png" alt="">
+           </div>
+           <div class="content">
+              <div class="icon">
+                 <i class="fas fa-cloud-upload-alt"></i>
+              </div>
+              <div class="text">
+                 No file chosen, yet!
+              </div>
+           </div>
+           <div id="cancel-btn">
+              <i class="fas fa-times"></i>
+           </div>
+           <div class="file-name">
+              File name here
+           </div>
+        </div>
+        <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+        <input id="banner-upload" type="file" hidden>
+    </div>
+    <div class="custom-select">
+        <select class="tag-select">
+            <option selected disabled>Choose a tag</option>
+            <option value="dan-chung">Dẫn chứng</option>
+            <option value="doc-hieu/kien-thuc">Đọc hiểu - Kiến thức</option>
+            <option value="doc-hieu/ky-nang">Đọc hiểu - Kỹ năng</option>
+            <option value="nlxh/kien-thuc">Nghị luận xã hội - Kiến thức</option>
+            <option value="nlxh/ky-nang">Nghị luận xã hội - Kỹ năng</option>
+            <option value="nlvh/kien-thuc">Nghị luận văn học - Kiến thức</option>
+            <option value="nlvh/ky-nang">Nghị luận văn học - Kỹ năng</option>
+        </select>
     </div>
     
-    <select class="tag-select">
-        <option value="dan-chung">Dẫn chứng</option>
-        <option value="doc-hieu/kien-thuc">Đọc hiểu - Kiến thức</option>
-        <option value="doc-hieu/ky-nang">Đọc hiểu - Kỹ năng</option>
-        <option value="nlxh/kien-thuc">Nghị luận xã hội - Kiến thức</option>
-        <option value="nlxh/ky-nang">Nghị luận xã hội - Kỹ năng</option>
-        <option value="nlvh/kien-thuc">Nghị luận văn học - Kiến thức</option>
-        <option value="nlvh/ky-nang">Nghị luận văn học - Kỹ năng</option>
-      </select>
 
     <div class="blog">
-        <textarea type="text" class="title" placeholder="Tiêu đề ..."></textarea>
+        <textarea type="text" class="title" placeholder="Nhập tiêu đề ..."></textarea>
         <!-- <textarea type="text" class="article" placeholder="Start writing here..."></textarea> -->
         <textarea id="article" class="article" placeholder="Nội dung bài viết ..."></textarea>
         <script>
@@ -48,7 +78,7 @@
     </div>
 
     <div class="blog-options">
-        <button class="btn dark publish-btn">publish</button>
+        <button class="btn dark publish-btn">Đăng</button>
         <!--<input type="file" accept="image/*" id="image-upload" hidden>
         <label for="image-upload" class="btn grey upload-btn">Upload Image</label>-->
     </div>
@@ -56,7 +86,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
-
+    <script src="js/upload-img.js"></script>
     <script src="js/firebase.js"></script>
     <script src="js/editor.js"></script>
 
