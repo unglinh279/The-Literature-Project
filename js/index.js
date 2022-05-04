@@ -3,13 +3,14 @@ const urlParams = new URLSearchParams(window.location.search);
 let tag = urlParams.get('tag');
 
 const blogSection = document.querySelector('.blogs-section');
-// const searchBar = document.querySelector('.search-bar');
+const blogList = [];
 
 db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then((blogs) => {
     blogs.forEach(blog => {
         const urlParams = new URLSearchParams(window.location.search);
         if(blog.id != urlParams.get('id')){
             createBlog(blog);
+            blogList.push(blog.data());
         }
     })
 })    
