@@ -1,6 +1,7 @@
 var btnOpenSearch = document.querySelector('.btn-open-search')
 var search = document.querySelector('.search')
 var iconCloseSearch = document.querySelector('.search-header i')
+var btnSearch = document.querySelector('.btn-search');
 
 function toggleSearch() {
     search.classList.toggle('search-hide')
@@ -60,4 +61,8 @@ btnRemoveAll.addEventListener('click', function() {
 iconCloseSearch.addEventListener('click', function() {
     tags = []
     render()
+})
+
+btnSearch.addEventListener('click', function(){
+    console.log(tags)
 })
