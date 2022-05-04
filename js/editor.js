@@ -56,14 +56,12 @@ function publish(){
         article: tinymce.get("article").getContent(),
         tag: tagField.value,
         bannerImage: bannerPath,
-        publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+        publishedAt: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
     })
     .then(() => {
         location.href = 'blog.html'+'?id='+docName;
     }); 
 }
-
-let months = ["tháng Một", "tháng Hai", "tháng Ba", "tháng Tư", "tháng Năm", "tháng Sáu", "tháng Bảy", "tháng Tám", "tháng Chín", "tháng Mười", "tháng Mười một", "tháng Mười hai"];
 
 publishBtn.addEventListener('click', () => {
     if(!tinymce.get("article").getContent().length){

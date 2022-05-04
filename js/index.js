@@ -3,35 +3,36 @@ const urlParams = new URLSearchParams(window.location.search);
 let tag = urlParams.get('tag');
 
 const blogSection = document.querySelector('.blogs-section');
-const searchBar = document.querySelector('.search-bar');
+const blogList = [];
 
 db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then((blogs) => {
     blogs.forEach(blog => {
         const urlParams = new URLSearchParams(window.location.search);
         if(blog.id != urlParams.get('id')){
             createBlog(blog);
+            blogList.push(blog.data());
         }
     })
 })    
 
-searchBar.addEventListener('input', function(){
-    let blogCards = document.querySelectorAll('.blog-card');
-    let val = searchBar.value.toLowerCase().trim();
+// document.querySelector('.search-bar').addEventListener('input', function(){
+//     let blogCards = document.querySelectorAll('.blog-card');
+//     let val = document.querySelector('.search-bar').value.toLowerCase().trim();
     
 
-    for(var i = 0; i < blogCards.length; i++){
-        let content = blogCards[i].textContent.toLowerCase();
-        content = content.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-        console.log(content);
-        if(content.includes(val)){
-            blogCards[i].classList.remove("is-hidden");
-        }
-        else{
-            blogCards[i].classList.add("is-hidden");
-            console.log('hidden');
-        }
-    }
-})
+//     for(var i = 0; i < blogCards.length; i++){
+//         let content = blogCards[i].textContent.toLowerCase();
+//         content = content.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+//         console.log(content);
+//         if(content.includes(val)){
+//             blogCards[i].classList.remove("is-hidden");
+//         }
+//         else{
+//             blogCards[i].classList.add("is-hidden");
+//             console.log('hidden');
+//         }
+//     }
+// })
 
 const createBlog = (blog) => {
     let data = blog.data();
