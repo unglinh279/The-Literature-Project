@@ -1,7 +1,9 @@
 let blogId = urlParams.get('id');
-
 let docRef = db.collection("blogs").doc(blogId);
 
+if(blogId == null){
+    location.replace("index.html");
+}
 docRef.get().then((doc) => {
     if(doc.exists && blogId != null){
         setupBlog(doc.data());

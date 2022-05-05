@@ -15,25 +15,6 @@ db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then
     })
 })    
 
-// document.querySelector('.search-bar').addEventListener('input', function(){
-//     let blogCards = document.querySelectorAll('.blog-card');
-//     let val = document.querySelector('.search-bar').value.toLowerCase().trim();
-    
-
-//     for(var i = 0; i < blogCards.length; i++){
-//         let content = blogCards[i].textContent.toLowerCase();
-//         content = content.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-//         console.log(content);
-//         if(content.includes(val)){
-//             blogCards[i].classList.remove("is-hidden");
-//         }
-//         else{
-//             blogCards[i].classList.add("is-hidden");
-//             console.log('hidden');
-//         }
-//     }
-// })
-
 const createBlog = (blog) => {
     let data = blog.data();
 
