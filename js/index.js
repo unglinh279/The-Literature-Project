@@ -5,7 +5,7 @@ let tag = urlParams.get('tag');
 const blogSection = document.querySelector('.blogs-section');
 const blogList = [];
 
-db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then((blogs) => {
+db.collection("blogs").orderBy("publishedTime", "asc").get().then((blogs) => {
     blogs.forEach(blog => {
         const urlParams = new URLSearchParams(window.location.search);
         if(blog.id != urlParams.get('id')){

@@ -9,15 +9,10 @@ const banner = document.querySelector(".banner");
 let bannerPath = null;
 
 const publishBtn = document.querySelector('.publish-btn');
-//const uploadInput = document.querySelector('#image-upload');
 
 bannerImage.addEventListener('change', () => {
     uploadImage(bannerImage);
 })
-
-// uploadInput.addEventListener('change', () => {
-//     uploadImage(uploadInput, "image");
-// })
 
 const uploadImage = (uploadFile) => {
     const [file] = uploadFile.files;
@@ -56,7 +51,8 @@ function publish(){
         article: tinymce.get("article").getContent(),
         tag: tagField.value,
         bannerImage: bannerPath,
-        publishedAt: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+        publishedAt: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+        publishedTime: date.toLocaleString(),
     })
     .then(() => {
         location.href = 'blog.html'+'?id='+docName;
@@ -70,9 +66,13 @@ publishBtn.addEventListener('click', () => {
     else if(!blogTitleField.value.length){
         alert("viết cái tiêu đề ik chời!");
     }
+    else if(!tagField.value.length){
+        alert("chọn cái tag ik chời!");
+    }
     else{
         if(bannerPath == null){
-            storageRef.child('img/default.jpg').getDownloadURL().then((url) => {
+            let rnd = Math.floor(Math.random()*7 + 1);
+            storageRef.child('default-images/'.concat(rnd).concat('.jpg')).getDownloadURL().then((url) => {
                 bannerPath = url;
                 publish();
             });
