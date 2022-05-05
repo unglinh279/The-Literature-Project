@@ -15,15 +15,21 @@ db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then
     })
 })    
 
+function extractContent(s) {
+    var span = document.createElement('span');
+    span.innerHTML = s;
+    return span.textContent || span.innerText;
+};
+
 const createBlog = (blog) => {
     let data = blog.data();
 
-    let title = data.title;
+    let title = extractContent(data.title);
     if(title.length > 100){
         title = title.substring(0, 100) + ' ...';
     }
     
-    let article = data.article;
+    let article = extractContent(data.article);
     if(article.length > 200){
         article = article.substring(0, 200) + ' ...';
     }
@@ -33,7 +39,8 @@ const createBlog = (blog) => {
         <img src="${data.bannerImage}" class="blog-image" alt="banner image">
         <h1 class="blog-title">${title}</h1>
         <p class="blog-overview">${article}</p>
-        <p class="blog-overview">${data.tag}</p>
+        <i class="blog-overview">Tag: ${data.tag}</i>
+        <br>
         <a href="blog.html" onClick="location.href=this.href+'?id=${blog.id}';return false;" class="btn dark">read</a>
     </div>
     `;
