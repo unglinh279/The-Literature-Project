@@ -7,10 +7,12 @@ const blogList = [];
 
 db.collection("blogs").orderBy("publishedTime", "asc").get().then((blogs) => {
     blogs.forEach(blog => {
-        const urlParams = new URLSearchParams(window.location.search);
-        if(blog.id != urlParams.get('id')){
-            createBlog(blog);
-            blogList.push(blog.data());
+        if(tag == null || blog.data().tag.includes(tag)){
+            const urlParams = new URLSearchParams(window.location.search);
+            if(blog.id != urlParams.get('id')){
+                createBlog(blog);
+                blogList.push(blog.data());
+            }
         }
     })
 })    
