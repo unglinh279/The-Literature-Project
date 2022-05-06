@@ -1,6 +1,7 @@
 const blogTitleField = document.querySelector('.title');
 const articleFeild = document.querySelector('.article');
 const tagField = document.querySelector('.tag-select');
+const uploadDesc = document.querySelector('.upload-description');
 const storageRef = firebase.storage().ref();
 
 // banner
@@ -19,6 +20,7 @@ const uploadImage = (uploadFile) => {
     if(file && file.type.includes("image")){
         storageRef.child('img/'.concat(file.name)).put(file).then((data) => {
             data.ref.getDownloadURL().then((url) => {
+                uploadDesc.style.display = 'none'; 
                 bannerPath = url;
                 banner.style.backgroundImage = `url("${bannerPath}")`;
             });

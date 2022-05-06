@@ -4,28 +4,14 @@
     font-family: segoe ui,lucida grande,Arial,sans-serif;
 }
 
-/* .banner {
+.banner{
     width: 100%;
-    position: static;
-    text-align: center;
+    height: 400px;
+    position: relative;
+    background: #e7e7e7;
+    background-size: cover;
+    background-position: center;
 }
-
-#banner-upload {
-    background-color: blueviolet;
-    width: 80vw;
-    height: 300px;
-}
-
-.banner label i {
-    background-color: blueviolet;
-    color: white;
-    width: 100px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 27px;
-    text-align: center;
-    border-radius: 50px;
-} */
 
 .blog {
     padding: 20px 40px;
@@ -87,7 +73,7 @@ html,body{
     height: 100%;
 }
 
-.banner {
+/*.banner {
     height: 300px;
     width: 430px;
     position: relative;
@@ -178,4 +164,4 @@ html,body{
     text-transform: uppercase;
     cursor: pointer;
     background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
-}
+} */

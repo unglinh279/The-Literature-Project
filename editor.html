@@ -17,36 +17,14 @@
         </ul>
     </nav>
 
-    <!-- <div class="banner">
-        <input type="file" accept="image/*" id="banner-upload">
-        <p></p>
-        <label for="banner-upload" class="banner-upload-btn">
-            <i class="fa-solid fa-arrow-up-from-bracket"></i>
-        </label>
-    </div> -->
-    <div class="banner">
-        <div class="wrapper">
-           <div class="image">
-              <img src="img/none.png" alt="">
-           </div>
-           <div class="content">
-              <div class="icon">
-                 <i class="fas fa-cloud-upload-alt"></i>
-              </div>
-              <div class="text">
-                 No image chosen, yet!
-              </div>
-           </div>
-           <div id="cancel-btn">
-              <i class="fas fa-times"></i>
-           </div>
-           <div class="file-name">
-              File name here
-           </div>
+    <input type="file" accept="image/*" id="banner-upload" hidden>
+    <label for="banner-upload" class="banner">
+        <div class="upload-description">
+            <a>No Image chosen!</a>
+            <img src="img/upload.png">
         </div>
-        <button onclick="defaultBtnActive()" id="custom-btn">Choose a image</button>
-        <input id="banner-upload" type="file" accept="image/*" hidden>
-    </div>
+    </label>
+
     <div class="custom-select">
         <select class="tag-select">
             <option value="" selected disabled hidden>Choose a tag</option>
@@ -87,9 +65,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
-    <script src="js/upload-img.js"></script>
     <script src="js/firebase.js"></script>
     <script src="js/editor.js"></script>
-
 </body>
 </html>
