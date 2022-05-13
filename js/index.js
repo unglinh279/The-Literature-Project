@@ -3,19 +3,29 @@ const urlParams = new URLSearchParams(window.location.search);
 let tag = urlParams.get('tag');
 
 const blogSection = document.querySelector('.blogs-section');
-const blogList = [];
 
-db.collection("blogs").orderBy("publishedTime", "asc").get().then((blogs) => {
+db.collection("blogs").get().then((blogs) => {
+    const blogList = [];
     blogs.forEach(blog => {
         if(tag == null || blog.data().tag.includes(tag)){
             const urlParams = new URLSearchParams(window.location.search);
             if(blog.id != urlParams.get('id')){
-                createBlog(blog);
-                blogList.push(blog.data());
+                blogList.push(blog);
             }
         }
     })
-})    
+
+    function toTimestamp(strDate){
+        var datum = Date.parse(strDate);
+        return datum/1000;
+     }
+
+     blogList.sort((a, b) => (toTimestamp(a.data().publishedTime) < toTimestamp(b.data().publishedTime) ? 1 : -1))
+
+    for(var i = 0; i < blogList.length; i++){
+        createBlog(blogList[i]);
+    }
+}) 
 
 function extractContent(s) {
     var span = document.createElement('span');
@@ -43,7 +53,7 @@ const createBlog = (blog) => {
         <p class="blog-overview">${article}</p>
         <i class="blog-overview">Tag: ${data.tag}</i>
         <br>
-        <a href="blog.html" onClick="location.href=this.href+'?id=${blog.id}';return false;" class="btn dark">read</a>
+        <a href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" class="btn dark">read</a>
     </div>
     `;
 }

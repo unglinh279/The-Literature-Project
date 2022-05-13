@@ -53,7 +53,7 @@ function publish(){
         article: tinymce.get("article").getContent(),
         tag: tagField.value,
         bannerImage: bannerPath,
-        publishedAt: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+        publishedAt: `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`,
         publishedTime: date.toLocaleString(),
     })
     .then(() => {
