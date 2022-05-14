@@ -63,13 +63,13 @@ function publish(){
 
 publishBtn.addEventListener('click', () => {
     if(!tinymce.get("article").getContent().length){
-        alert("viết gì ik rùi đăng!");
+        alert("Bài viết chưa có nội dung!");
     }
     else if(!blogTitleField.value.length){
-        alert("viết cái tiêu đề ik chời!");
+        alert("Bài viết chưa có tiêu đề!");
     }
     else if(!tagField.value.length){
-        alert("chọn cái tag ik chời!");
+        alert("Bài viết chưa có tag!");
     }
     else{
         if(bannerPath == null){
