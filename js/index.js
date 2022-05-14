@@ -51,9 +51,8 @@ const createBlog = (blog) => {
         <img src="${data.bannerImage}" class="blog-image" alt="banner image">
         <h1 class="blog-title">${title}</h1>
         <p class="blog-overview">${article}</p>
-        <i class="blog-overview">Tag: ${data.tag}</i>
         <br>
-        <a href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" class="btn dark">read</a>
+        <a href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" class="btn dark">Đọc bài</a>
     </div>
     `;
 }
