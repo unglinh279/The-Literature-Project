@@ -58,6 +58,8 @@ function publish(){
     })
     .then(() => {
         location.href = 'blog.html'+'?id='+docName;
+    }).catch((error) => {
+        alert("Đăng thất bại, lỗi: " + error);
     }); 
 }
 
@@ -72,15 +74,24 @@ publishBtn.addEventListener('click', () => {
         alert("Bài viết chưa có tag!");
     }
     else{
-        if(bannerPath == null){
-            let rnd = Math.floor(Math.random()*7 + 1);
-            storageRef.child('default-images/'.concat(rnd).concat('.jpg')).getDownloadURL().then((url) => {
-                bannerPath = url;
-                publish();
-            });
-        }
-        else{
-            publish();
-        }
+        let password = prompt("Vui lòng nhập password để đăng bài viết");
+
+        db.doc("info/password").get().then((pass) => {
+            if(password == pass.data().val){
+                if(bannerPath == null){
+                    let rnd = Math.floor(Math.random()*7 + 1);
+                    storageRef.child('default-images/'.concat(rnd).concat('.jpg')).getDownloadURL().then((url) => {
+                        bannerPath = url;
+                        publish();
+                    });
+                }
+                else{
+                    publish();
+                }
+            }
+            else{
+                alert("Sai password!");
+            }
+        })    
     }
 })

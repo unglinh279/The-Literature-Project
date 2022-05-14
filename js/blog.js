@@ -1,5 +1,6 @@
 let blogId = urlParams.get('id');
 let docRef = db.collection("blogs").doc(blogId);
+let deletePost = document.getElementById("delete-btn");
 
 if(blogId == null){
     location.replace("index.html");
@@ -27,6 +28,25 @@ const setupBlog = (data) => {
     const article = document.querySelector('.article');
     article.innerHTML += data.article;
 }
+
+deletePost.addEventListener("click", function(){
+    let password = prompt("Vui lòng nhập password để xóa bài viết");
+    db.doc("info/password").get().then((pass) => {
+        if(password == pass.data().val){
+            db.collection("blogs").doc(blogId).delete().then(() => {
+                alert("Xóa thành công!");
+                location.href = "index.html";
+            }).catch((error) => {
+                alert("Xóa thât bại!, lỗi: " + error);
+                location.href = "index.html";
+            })
+        }
+        else{
+            alert("Sai password!");
+        }
+    })  
+
+});
 
 // const addArticle = (ele, data) => {
 //     data = data.split("\n").filter(item => item.length);

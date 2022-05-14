@@ -1,3 +1,10 @@
+function passwordCheck(inp){
+    db.doc("info/password").get().then((doc) => {
+        console.log(doc.data().val);
+        console.log(inp);
+        return (inp == doc.data().val);
+    })    
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 let tag = urlParams.get('tag');
