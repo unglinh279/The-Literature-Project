@@ -1,11 +1,3 @@
-function passwordCheck(inp){
-    db.doc("info/password").get().then((doc) => {
-        console.log(doc.data().val);
-        console.log(inp);
-        return (inp == doc.data().val);
-    })    
-}
-
 const urlParams = new URLSearchParams(window.location.search);
 let tag = urlParams.get('tag');
 
@@ -44,22 +36,27 @@ const createBlog = (blog) => {
     let data = blog.data();
 
     let title = extractContent(data.title);
-    if(title.length > 100){
-        title = title.substring(0, 100) + ' ...';
+    if(title.length > 50){
+        title = title.substring(0, 50) + ' ...';
     }
     
     let article = extractContent(data.article);
-    if(article.length > 200){
-        article = article.substring(0, 200) + ' ...';
+    if(article.length > 150){
+        article = article.substring(0, 150) + ' ...';
     }
 
     blogSection.innerHTML += `
-    <div class="blog-card">
-        <img src="${data.bannerImage}" class="blog-image" alt="banner image">
-        <h1 class="blog-title">${title}</h1>
-        <p class="blog-overview">${article}</p>
-        <br>
-        <a href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" class="btn dark">Đọc bài</a>
+    <div class="card-grid-space">
+      <a class="card" href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" style="--bg-img: url(${data.bannerImage})">
+        <div>
+          <h1>${title}</h1>
+          <p>${article}</p>
+          <div class="date">${data.publishedAt}</div>
+          <div class="tags">
+            <div class="tag">${data.tag}</div>
+          </div>
+        </div>
+      </a>
     </div>
     `;
 }
