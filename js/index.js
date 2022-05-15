@@ -42,7 +42,7 @@ const createBlog = (blog) => {
     
     let article = extractContent(data.article);
     if(article.length > 150){
-        article = article.substring(0, 150) + ' ...';
+        article = article.substring(0, 160) + ' ...';
     }
 
     blogSection.innerHTML += `
