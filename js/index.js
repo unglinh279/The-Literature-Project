@@ -17,9 +17,9 @@ db.collection("blogs").get().then((blogs) => {
     function toTimestamp(strDate){
         var datum = Date.parse(strDate);
         return datum/1000;
-     }
+    }
 
-     blogList.sort((a, b) => (toTimestamp(a.data().publishedTime) < toTimestamp(b.data().publishedTime) ? 1 : -1))
+    blogList.sort((a, b) => (toTimestamp(a.data().publishedTime) < toTimestamp(b.data().publishedTime) ? 1 : -1))
 
     for(var i = 0; i < blogList.length; i++){
         createBlog(blogList[i]);
