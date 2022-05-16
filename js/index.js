@@ -37,12 +37,12 @@ const createBlog = (blog) => {
 
     let title = extractContent(data.title);
     if(title.length > 50){
-        title = title.substring(0, 50) + ' ...';
+        title = title.substring(0, 50) + '...';
     }
     
     let article = extractContent(data.article);
-    if(article.length > 150){
-        article = article.substring(0, 160) + ' ...';
+    if(article.length > 110){
+        article = article.substring(0, 110) + '...';
     }
 
     blogSection.innerHTML += `

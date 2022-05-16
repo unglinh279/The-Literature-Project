@@ -64,6 +64,8 @@ iconCloseSearch.addEventListener('click', function() {
 })
 
 btnSearch.addEventListener('click', function(){
+    if(tags.length == 0) location.reload();
+
     blogSection.innerHTML = '';
     db.collection("blogs").where("tag", (tag == null) ? "!=" : "==", tag).get().then((blogs) => {
         blogs.forEach(blog => {
