@@ -31,139 +31,6 @@ body {
     /* position: fixed; */
 }
 
-.btn-open-search {
-    background-color: #11999E;
-    border: 0px;
-    height: 45px;
-    width: 45px;
-    top: 0;
-    right: 0;
-    align-items: center;
-    float: left;
-    border-radius: 17px 17px;
-    margin: 7px 0px 0px 50px;
-    color: white;
-    font-size: 18px;
-}
-
-.search {
-    position: fixed;
-    top: 0;
-    background-color: rgb(0, 0, 0, 0.4);
-    width: 100vw;
-    height: 100vh;
-}
-
-.search-hide {
-    display: none;
-}
-
-.search-inner {
-    background-color: white;
-    position: relative;
-    width: 600px;
-    padding: 20px;
-    margin: 90px auto;
-    border-radius: 5px;
-    overflow: hidden;
-    animation: showSearch linear 0.2s;
-}
-
-@keyframes showSearch {
-    from {
-      top: -200px;
-      opacity: 0;
-    }
-    to {
-      top: 0;
-      opacity: 1;
-    }
-}
-
-.search-header {
-    background-color: white;
-    margin: 0;
-    color: #40514E;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 40px;
-    padding: 5px 20px 10px 20px;
-}
-
-.search-header p {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    font-size: 26px;
-}
-
-.search-header i {
-    font-size: 20px;
-}
-
-.search-content {
-    padding: 10px;
-    border: 1px solid #40514E;
-    border-radius: 6px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.search-content li {
-    background-color: #11999E;
-    list-style: none;
-    font-size: 18px;
-    /* font-weight: bold; */
-    color: white;
-    padding: 6px;
-    border-radius: 5px;
-    margin: 3px;
-}
-
-.search-content li i {
-    font-size: 13px;
-    margin-left: 3px;
-}
-
-.search-content input {
-    border: none;
-    outline: none;
-    font-size: 18px;
-    margin: 10px;
-    flex: 1;
-}
-
-.search-footer {
-    margin: 20px 0px;
-    padding: 0px 20px;
-    text-align: right;
-}
-
-.btn-removeAll-search, .btn-search {
-    border: none;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #11999E;
-    color: white;
-    font-weight: bold;
-    margin-left: 25px;
-}
-
-.btn-category {
-    background-color: white;
-    border: 0px;
-    top: 0;
-    right: 0;
-    align-items: center;
-    float: left;
-    margin-left: 36%;
-    margin-top: 7px;
-    color: #11999E;
-    font-size: 37px;
-}
-
 .line-1 {
     height: 1px;
     background: #11999E;
@@ -188,6 +55,73 @@ body {
 .btn.dark{
     background: #1b1b1b;
     color: #fff;
+}
+
+/* SEARCH BOX */
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+.search-box {
+  border: solid 5px black;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+}
+.search-box input[type=text] {
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  padding: 5px 40px 5px 10px;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 50px;
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+}
+.search-box input[type=text]:focus {
+  outline: none;
+}
+.search-box input[type=text]:focus, .search-box input[type=text]:not(:placeholder-shown) {
+  width: 300px;
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.search-box input[type=text]:focus + button[type=reset], .search-box input[type=text]:not(:placeholder-shown) + button[type=reset] {
+  bottom: 13px;
+  right: 10px;
+  transition: bottom 150ms ease-out 800ms, right 150ms ease-out 800ms;
+}
+.search-box input[type=text]:focus + button[type=reset]:after, .search-box input[type=text]:not(:placeholder-shown) + button[type=reset]:after {
+  top: 0;
+  right: 10px;
+  opacity: 1;
+  transition: top 150ms ease-out 950ms, right 150ms ease-out 950ms, opacity 150ms ease 950ms;
+}
+.search-box button[type=reset] {
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -13px;
+  right: -15px;
+  transition: bottom 150ms ease-out 150ms, right 150ms ease-out 150ms;
+}
+.search-box button[type=reset]:before, .search-box button[type=reset]:after {
+  content: "";
+  height: 25px;
+  border-left: solid 5px black;
+  position: absolute;
+  transform: rotate(-45deg);
+}
+.search-box button[type=reset]:after {
+  transform: rotate(45deg);
+  opacity: 0;
+  top: -20px;
+  right: -10px;
+  transition: top 150ms ease-out, right 150ms ease-out, opacity 150ms ease-out;
 }
 
 /*section img {
