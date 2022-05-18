@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 let tag = urlParams.get('tag');
 
-const blogSection = document.querySelector('.blogs-section');
+const blogSection = document.querySelector('.home-cards-container');
 
 db.collection("blogs").get().then((blogs) => {
     const blogList = [];
