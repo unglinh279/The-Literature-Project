@@ -46,17 +46,15 @@ const createBlog = (blog) => {
     }
 
     blogSection.innerHTML += `
-    <div class="card-grid-space">
-      <a class="card" href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" style="--bg-img: url(${data.bannerImage})">
-        <div>
-          <h1>${title}</h1>
-          <p>${article}</p>
-          <div class="date">${data.publishedAt}</div>
-          <div class="tags">
-            <div class="tag">${data.tag}</div>
-          </div>
-        </div>
-      </a>
+    <a class="card" href="blog.html" onClick="location.href=this.href+'?id=${blog.id}&tag=${data.tag}';return false;" style="--bg-img: url(${data.bannerImage})">
+    <div>
+      <h1>${title}</h1>
+      <p>${article}</p>
+      <div class="date">${data.publishedAt}</div>
+      <div class="tags">
+        <div class="tag">${data.tag}</div>
+      </div>
     </div>
+  </a>
     `;
 }
