@@ -9,15 +9,15 @@
   box-sizing: border-box;
 }
 
-.home-cards-container {
+.blogs-section {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 3rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  padding: 4rem;
   margin: 0 auto;
-  width: auto;
-  overflow: hidden;
+  width: max-content;
 }
 
 .card {
@@ -30,12 +30,12 @@
   color: white;
   border-radius: 1em;
   padding: 1em;
-  margin: 0 10px 0 0;
+  /*margin: 2em;*/
   display: flex;
   align-items: flex-end;
   background-size: cover;
   background-position: center;
-  box-shadow: 5px 5px 9px rgba(0,0,0,0.4);
+  box-shadow: 0 0 5em -1em black;
   transition: all, var(--transition-time);
   position: relative;
   overflow: hidden;
@@ -48,7 +48,6 @@
 }
 
 .card h1 {
-  font-family: sans-serif;
   margin: 0;
   font-size: 1.5em;
   line-height: 1.2em;
@@ -124,15 +123,20 @@
 }
 
 /* MEDIA QUERIES */
+@media screen and (max-width: 1700px) {
+  .blogs-section {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 @media screen and (max-width: 1285px) {
-  .home-cards-container {
+  .blogs-section {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .home-cards-container {
+  .blogs-section {
     grid-template-columns: 1fr;
   }
   .info {
@@ -141,7 +145,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .home-cards-container {
+  .blogs-section {
     padding: 4rem 2rem;
   }
   .card {
