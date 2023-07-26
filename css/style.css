@@ -124,31 +124,64 @@ body {
   transition: top 150ms ease-out, right 150ms ease-out, opacity 150ms ease-out;
 }
 
-/*section img {
-    margin-top: 30px;
-    width: 100px;
-    height: auto;
+/* styles.css */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.blogs-section{
-    width: 100%;
-    padding: 50px 5vw;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 80px;
+/* Style the main navigation bar */
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
 }
 
-.blog-image{
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.navbar .links-container {
+  display: flex;
+  justify-content: center; /* Center the links horizontally */
 }
 
-.blog-overview{
-    margin: 10px 0 20px;
-    line-height: 30px;
-} */
+.navbar .link-item {
+  margin: 0 15px; /* Add spacing between links */
+}
+
+.navbar .link {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s; /* Smooth transition on hover */
+}
+
+.navbar .link:hover {
+  text-decoration: underline;
+}
+
+/* Style the sub-menu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  padding: 10px;
+  z-index: 1; /* Ensure sub-menu appears above content */
+}
+
+.link-item:hover .sub-menu {
+  display: block;
+}
+
+.sub-menu li {
+  margin: 5px 0;
+}
+
+.sub-menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.sub-menu a:hover {
+  text-decoration: underline;
+}
 
 
